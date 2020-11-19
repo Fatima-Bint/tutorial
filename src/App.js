@@ -1,5 +1,7 @@
 import React from 'react';
 import Post from './components/Post';
+import Condition from './components/Condition';
+
 
 
 function App (){
@@ -8,6 +10,7 @@ function App (){
     <div className ='app'>
 
       <Post/>
+      <Condition/>
       
     </div>
 
