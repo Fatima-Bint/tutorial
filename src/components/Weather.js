@@ -7,21 +7,28 @@ function Weather() {
     city: ""
   });
 
-  const handleClick = (event) => {
+  /*const handleClick = (event) => {
     event.preventDefault();
     setValue({ ...value, country: event.target.value });
     setValue({ ...value, city: event.target.value });
-    console.log(value);
-  };
+    console.log(value.country,value.city);
+  };*/
 
-  const handleInputOnChange = (event) => {
+  const handleCountryOnChange = (event) => {
     event.preventDefault();
     setValue({ ...value, country: event.target.value });
-    setValue({ ...value, city: event.target.value });
-    console.log(value);
+    //setValue({ ...value, city: event.target.value });
+    //console.log(value.country,value.city);
   };
 
+
+  const handleCityOnChange = (event) => {
+    event.preventDefault();
+    setValue({ ...value, city: event.target.value });
+    //console.log(value.country,value.city);
+  };
   const getWeather = (event) => {
+      event.preventDefault()
     if (value.country && value.city)
       axios
         .get(
@@ -29,32 +36,34 @@ function Weather() {
         )
         .then((response) => {
           console.log(response);
+          
         })
         .catch((error) => {
           console.log(error);
+        
         });
   };
 
   return (
     <div>
-      <form onSubmit={handleClick}>
+      <form onSubmit={getWeather}>
         <input
-        value={value.country}
+          value={value.country}
           type="text"
           placeholder="Country"
-          onChange={handleInputOnChange}
+          onChange={handleCountryOnChange}
         />
         <input 
         value={value.city}
         type="text"
          placeholder="City" 
-         onChange={handleInputOnChange}
+         onChange={handleCityOnChange}
 
          />
         <button type="submit">Search</button>
+        
       </form>
-      <p>{value.country}</p>
-      <p>{value.city}</p>
+     
     </div>
   );
 }
