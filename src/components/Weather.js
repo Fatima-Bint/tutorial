@@ -4,8 +4,11 @@ import React, { useState } from "react";
 function Weather() {
   const [value, setValue] = useState({
     country: "",
-    city: ""
+    city: "",
+    weather: null
   });
+
+  
 
   /*const handleClick = (event) => {
     event.preventDefault();
@@ -35,6 +38,7 @@ function Weather() {
           `http://api.weatherstack.com/current?access_key=e8c9cdde633d4d626e767cfda679abd0&query=${value.country},${value.city}`
         )
         .then((response) => {
+          setValue({...value, weather: response.data})
           console.log(response);
           
         })
@@ -63,8 +67,19 @@ function Weather() {
         <button type="submit">Search</button>
         
       </form>
+
+      {
+        value.weather&&(
+          <div>
+            <h1>{value.weather.location.name}</h1>
+            <h1>{value.weather.current.cloudcover}</h1>
+          </div>
+        )
+      }
      
     </div>
+
+
   );
 }
 
