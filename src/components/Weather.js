@@ -8,14 +8,28 @@ function Weather() {
     weather: null
   });
 
-  
-
   /*const handleClick = (event) => {
     event.preventDefault();
     setValue({ ...value, country: event.target.value });
     setValue({ ...value, city: event.target.value });
     console.log(value.country,value.city);
   };*/
+
+  let history  = {
+    storedCountry: value.country,
+    storedCity: value.city
+  }
+
+  let arrayItem = JSON.stringify(history)
+
+  const historyArray = []
+  historyArray.push(arrayItem)
+
+  localStorage.setItem('searchHistory',historyArray)
+
+
+
+
 
   const handleCountryOnChange = (event) => {
     event.preventDefault();
@@ -32,6 +46,7 @@ function Weather() {
   };
   const getWeather = (event) => {
       event.preventDefault()
+      //localStorage.setItem('searchHistory', JSON.stringify(history));
     if (value.country && value.city)
       axios
         .get(
@@ -73,10 +88,11 @@ function Weather() {
           <div>
             <h1>{value.weather.location.name}</h1>
             <h1>{value.weather.current.cloudcover}</h1>
+            <h1>{value.weather.current.temperature}</h1>
           </div>
         )
       }
-     
+     localStorage.getItem{history}
     </div>
 
 
